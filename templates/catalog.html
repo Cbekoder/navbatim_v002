@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbatim - Online navbatlar uchun</title>
+    <link rel="stylesheet" href="{% static 'dikidi/styles.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        yellow: {
+                            100: '#fef9c3',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        },
+                        pink: {
+                            500: '#ec4899',
+                        },
+                        gray: {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            300: '#d1d5db',
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                            600: '#4b5563',
+                        },
+                        red: {
+                            500: '#ef4444',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">NAVBATIM</h1>
+            <div class="flex items-center gap-4">
+                <button class="px-4 py-2 border border-white rounded-md text-white hover:bg-blue-700">
+                    BIZNES UCHUN
+                </button>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm">🇺🇿</span>
+                    <span class="text-sm">▼</span>
+                </div>
+                <a href="#" class="text-sm hover:underline">
+                    Kirish
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-medium text-center mb-6">
+                Navbatlar uchun onlayn bron qilish ilovasi
+            </h2>
+
+            <!-- Search Bar -->
+            <div class="relative max-w-2xl mx-auto mb-8">
+                <input
+                    type="text"
+                    placeholder="Service, company or specialist"
+                    class="pl-4 pr-10 py-2 rounded-md w-full text-black"
+                />
+                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+
+            <!-- Category Icons -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 max-w-4xl mx-auto">
+                {% for category in categories %}
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-md text-center cursor-pointer {% if category.name == 'MORE' %}bg-blue-400 text-white{% else %}text-pink-500{% endif %}">
+                    <div class="text-2xl mb-2">{{ category.icon }}</div>
+                    <div class="text-xs font-medium {% if category.name == 'MORE' %}text-white{% endif %}">
+                        {{ category.name }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-blue-500 text-white">
+        <div class="container mx-auto">
+            <div class="flex overflow-x-auto">
+                {% for tab in tabs %}
+                <a
+                    href="{{ tab.url }}"
+                    class="px-4 py-3 flex items-center whitespace-nowrap {% if tab.active %}bg-white text-blue-500{% else %}hover:bg-blue-600{% endif %}"
+                >
+                    {% if tab.icon %}
+                    <span class="mr-2">{{ tab.icon|safe }}</span>
+                    {% endif %}
+                    <span>{{ tab.label }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow bg-gray-100 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Main Content Area -->
+                <div class="lg:w-2/3">
+                    <!-- Awards Banner -->
+                    <div class="bg-white rounded-lg shadow-sm mb-6 p-4 flex flex-col md:flex-row items-center justify-between">
+                        <div class="flex items-center mb-4 md:mb-0">
+                            <div class="bg-yellow-100 rounded-full p-3 mr-4">
+                                <div class="text-yellow-500 text-2xl">🏆</div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Navbatim Awards Winners</h3>
+                                <p class="text-sm text-gray-600">Annual award for high-quality services and client trust</p>
+                            </div>
+                        </div>
+                        <button class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md">VIEW</button>
+                    </div>
+
+                    <!-- Service Listings -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        {% for service in services %}
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="p-4 flex">
+                                <div class="mr-4">
+                                    <img
+                                        src="{% static service.image %}"
+                                        alt="{{ service.name }}"
+                                        class="w-20 h-20 rounded object-cover"
+                                    />
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="font-medium">{{ service.name }}</h3>
+                                        <svg class="text-gray-300 cursor-pointer hover:text-red-500" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">{{ service.address }}</p>
+                                </div>
+                            </div>
+                            {% if service.rating or service.award %}
+                            <div class="px-4 py-2 bg-gray-50 flex justify-between items-center">
+                                <div class="flex items-center">
+                                    {% if service.rating %}
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-500 mr-1">★</span>
+                                        <span class="text-sm">{{ service.rating }}</span>
+                                    </div>
+                                    {% endif %}
+                                    {% if service.award %}
+                                    <span class="ml-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">{{ service.award }}</span>
+                                    {% endif %}
+                                </div>
+                                <button class="px-3 py-1 border border-blue-500 text-blue-500 text-sm rounded-md hover:bg-blue-50">
+                                    Book Now
+                                </button>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:w-1/3">
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <div class="mb-6">
+                            <input type="text" placeholder="Search..." class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md" />
+
+                            <div class="mb-4">
+                                <p class="text-sm text-gray-500 mb-2">Sort by:</p>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    <option value="popularity">Popularity</option>
+                                    <option value="rating">Rating</option>
+                                    <option value="price">Price</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">City</p>
+                                <p class="text-blue-500">Tashkent</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Category</p>
+                                <p class="text-blue-500">Select category</p>
+                            </div>
+
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="vip" class="mr-2" />
+                                    <label for="vip">VIP status</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="awards" class="mr-2" />
+                                    <label for="awards">Navbatim imtiyozlari</label>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <input type="radio" name="filter" value="all" id="all" checked class="mr-2" />
+                                    <label for="all">All</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="filter" value="companies" id="companies" class="mr-2" />
+                                    <label for="companies">Companies only</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" name="filter" value="specialists" id="specialists" class="mr-2" />
+                                    <label for="specialists">Only specialists</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 p-4 rounded-md text-center">
+                            <p class="text-sm text-gray-600">Navbatim TWA-mini</p>
+                            <p class="font-bold text-xl"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Ma'lumotlar ustuni -->
+            <div class="footer-column">
+                <h3 class="footer-heading">MA'LUMOTLAR</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Kompaniya haqida</a></li>
+                    <li><a href="#" class="footer-link">Biz bilan bog‘lanish</a></li>
+                    <li><a href="#" class="footer-link">Cookie sozlamalarini sozlash</a></li>
+                    <li><a href="#" class="footer-link">Bepul onlayn bron qilish ilovasi</a></li>
+                </ul>
+            </div>
+
+            <!-- Qo‘shimcha ma'lumot havolalari ustuni -->
+            <div class="footer-column">
+                <ul class="footer-links mt-8">
+                    <li><a href="#" class="footer-link">Taklif dasturi</a></li>
+                    <li><a href="#" class="footer-link">Maxfiylik siyosati</a></li>
+                    <li><a href="#" class="footer-link">Foydalanish shartlari</a></li>
+                </ul>
+                <div class="app-store-icons">
+                    <a href="#" class="app-icon"><i class="fab fa-apple"></i></a>
+                    <a href="#" class="app-icon"><i class="fab fa-google-play"></i></a>
+                    <a href="#" class="app-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="app-icon"><i class="fas fa-store"></i></a>
+                </div>
+            </div>
+
+            <!-- Mutaxassislar uchun ustun -->
+            <div class="footer-column">
+                <h3 class="footer-heading">MUTAXASSISLAR UCHUN</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Navbatim Business haqida</a></li>
+                    <li><a href="#" class="footer-link">Biznes profilini yaratish</a></li>
+                    <li><a href="#" class="footer-link">Ma'lumot talablari</a></li>
+                    <li><a href="#" class="footer-link">Bepul biznes ilovasi</a></li>
+                </ul>
+            </div>
+
+            <!-- Mutaxassislar uchun qo‘shimcha havolalar ustuni -->
+            <div class="footer-column">
+                <ul class="footer-links mt-8">
+                    <li><a href="#" class="footer-link">Bilim bazasi</a></li>
+                    <li><a href="#" class="footer-link">Narxlar</a></li>
+                    <li><a href="#" class="footer-link">Litsenziya shartnomasi</a></li>
+                </ul>
+                <div class="app-store-icons">
+                    <a href="#" class="app-icon"><i class="fab fa-apple"></i></a>
+                    <a href="#" class="app-icon"><i class="fab fa-google-play"></i></a>
+                    <a href="#" class="app-icon"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="app-icon"><i class="fas fa-store"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer pastki qismi -->
+        <div class="footer-bottom">
+            <div class="copyright">
+                © 2025 Navbatim
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="language-selector">
+                <span class="flag">🇺🇿</span>
+                <span>O‘zbekcha</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="{% static 'dikidi/main.js' %}"></script>
+</body>
+
+</html>

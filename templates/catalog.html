@@ -49,7 +49,7 @@
     <!-- Header -->
     <header class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold mb-4 md:mb-0">NAVBATIM</h1>
+            <a href="/"><h1 class="text-3xl font-bold mb-4 md:mb-0">NAVBATIM</h1></a>
             <div class="flex items-center gap-4">
                 <button class="px-4 py-2 border border-white rounded-md text-white hover:bg-blue-700">
                     BIZNES UCHUN
@@ -76,7 +76,7 @@
             <div class="relative max-w-2xl mx-auto mb-8">
                 <input
                     type="text"
-                    placeholder="Service, company or specialist"
+                    placeholder="Xizmat, bo'lim, mutaxassis"
                     class="pl-4 pr-10 py-2 rounded-md w-full text-black"
                 />
                 <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -131,11 +131,11 @@
                                 <div class="text-yellow-500 text-2xl">🏆</div>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg">Navbatim Awards Winners</h3>
-                                <p class="text-sm text-gray-600">Annual award for high-quality services and client trust</p>
+                                <h3 class="font-bold text-lg">Navbatim platformasi imtiyozlari</h3>
+                                <p class="text-sm text-gray-600">Biznes egalari tarafidan taqdim e'tilayotgan chegirmalar</p>
                             </div>
                         </div>
-                        <button class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md">VIEW</button>
+                        <button class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-md">Ko'rish</button>
                     </div>
 
                     <!-- Service Listings -->
@@ -187,31 +187,31 @@
                 <div class="lg:w-1/3">
                     <div class="bg-white rounded-lg shadow-sm p-4">
                         <div class="mb-6">
-                            <input type="text" placeholder="Search..." class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md" />
+                            <input type="text" placeholder="Qidirish..." class="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md" />
 
                             <div class="mb-4">
-                                <p class="text-sm text-gray-500 mb-2">Sort by:</p>
+                                <p class="text-sm text-gray-500 mb-2">Saralash:</p>
                                 <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
-                                    <option value="popularity">Popularity</option>
-                                    <option value="rating">Rating</option>
-                                    <option value="price">Price</option>
+                                    <option value="popularity">Mashhurlik</option>
+                                    <option value="rating">Baholash</option>
+                                    <option value="price">Narx</option>
                                 </select>
                             </div>
 
                             <div class="mb-4">
-                                <p class="font-medium mb-2">City</p>
-                                <p class="text-blue-500">Tashkent</p>
+                                <p class="font-medium mb-2">Hudud</p>
+                                <p class="text-blue-500">Buloqboshi</p>
                             </div>
 
                             <div class="mb-4">
-                                <p class="font-medium mb-2">Category</p>
-                                <p class="text-blue-500">Select category</p>
+                                <p class="font-medium mb-2">Bo'lim</p>
+                                <p class="text-blue-500">Bo'lim tanlash</p>
                             </div>
 
                             <div class="space-y-2 mb-4">
                                 <div class="flex items-center">
                                     <input type="checkbox" id="vip" class="mr-2" />
-                                    <label for="vip">VIP status</label>
+                                    <label for="vip">VIP</label>
                                 </div>
                                 <div class="flex items-center">
                                     <input type="checkbox" id="awards" class="mr-2" />
@@ -226,11 +226,11 @@
                                 </div>
                                 <div class="flex items-center">
                                     <input type="radio" name="filter" value="companies" id="companies" class="mr-2" />
-                                    <label for="companies">Companies only</label>
+                                    <label for="companies">Faqat kompaniyalar</label>
                                 </div>
                                 <div class="flex items-center">
                                     <input type="radio" name="filter" value="specialists" id="specialists" class="mr-2" />
-                                    <label for="specialists">Only specialists</label>
+                                    <label for="specialists">Faqat mutaxassislar</label>
                                 </div>
                             </div>
                         </div>
@@ -238,6 +238,7 @@
                         <div class="bg-blue-50 p-4 rounded-md text-center">
                             <p class="text-sm text-gray-600">Navbatim TWA-mini</p>
                             <p class="font-bold text-xl"></p>
+                            <img src="{% static 'dikidi/img.png' %}" alt="Navbatim TWA-mini" class="w-60 mx-auto mt-4" />
                         </div>
                     </div>
                 </div>
